@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import ListItem from '@/common/components/listItem'
 import ListContainer from '@/common/components/listOfItems'
 import { Inter } from 'next/font/google'
@@ -6,7 +7,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const testListItems = ["School Work Tasks", "Work Tasks", "Personal Projects"]
+  const testListItems = [{title: "School Work Tasks", id: 1}, {title: "Work Tasks", id: 2}, {title: "Personal Projects", id:3}]
   return (
     <>
       <Head>
@@ -16,8 +17,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ListContainer >
-        {testListItems.map(title => {
-          return <ListItem title={title} />
+        {testListItems.map(list => {
+          return (<Link href={{
+            pathname: '/list/[id]',
+            query: {id: list.id},
+          }}>
+          <ListItem title={list.title} />
+          </Link>);
         })}
       </ListContainer>
     </>
