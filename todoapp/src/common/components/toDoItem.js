@@ -7,7 +7,11 @@ export default function ToDoItem({title, isChecked }) {
     return (
         <div className="listItemContainer"> 
             <button onClick={handleCheck}>Complete</button>
-            <p className="itemTitle"> {title}</p>
+            {isChecked ? 
+                <s><p className="itemTitle"> {title}</p></s> :
+                <p className="itemTitle"> {title}</p>
+            }
+
         </div>
     )
 }
